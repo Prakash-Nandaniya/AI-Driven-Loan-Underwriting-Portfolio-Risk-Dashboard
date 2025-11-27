@@ -44,49 +44,6 @@ It simulates how digital lenders evaluate borrowers, manage portfolio risk, and 
 
 ---
 
-## 🧠 Why This Project Fits Risk & Portfolio Mgmt Roles
-Demonstrates skills required in lending analytics:
-- Credit decision model building  
-- Portfolio performance monitoring  
-- SQL and Python automation  
-- Feature engineering  
-- Lending KPIs (NPA, PAR, vintages)  
-- Test-and-learn risk simulations  
-- End-to-end underwriting workflow
-
----
-
-## 📂 Project Structure
-
-CrediSight/
-│
-├── data/
-│ ├── accepted_2007_2018.csv
-│ ├── rejected_2007_2018.csv
-│
-├── models/
-│ ├── model.pkl
-│ ├── train_model.py
-│
-├── database/
-│ ├── schema.sql
-│ ├── connection.py
-│
-├── streamlit_app/
-│ ├── app.py
-│ ├── pages/
-│ ├── 1_Underwriting.py
-│ ├── 2_Portfolio_MIS.py
-│ ├── 3_Risk_Simulation.py
-│
-└── utils/
-├── preprocessing.py
-├── feature_engineering.py
-├── scoring.py
-
-
----
-
 ## 🧮 Machine Learning Overview
 
 ### **Models**
@@ -138,7 +95,7 @@ CrediSight/
 ## 🛠️ Tech Stack
 - **Python** (pandas, numpy, scikit-learn, xgboost)  
 - **Streamlit** (UI & dashboard)  
-- **SQL Server / PostgreSQL**  
+- **SQL Server **  
 - **Matplotlib / Plotly**  
 - **Joblib** (model storage)
 
@@ -146,11 +103,9 @@ CrediSight/
 
 ## 🚧 Future Enhancements
 - Automated model retraining pipeline  
-- Model versioning  
-- Real-time scoring API (FastAPI)  
+- Hosting remote
+- Real-time scoring API 
 - Collections & recovery analytics  
 
 ---
 
-## 📬 Contact
-For questions or collaboration, feel free to reach out!
