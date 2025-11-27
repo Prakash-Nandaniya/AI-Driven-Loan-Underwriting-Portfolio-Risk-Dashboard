@@ -1,6 +1,6 @@
-# CrediSight – AI-Driven Loan Underwriting & Portfolio Risk Management System
+# AI-Driven Loan Underwriting & Portfolio Risk Management System
 
-CrediSight is an end-to-end credit risk scoring and lending portfolio analytics system built using Python, Streamlit, SQL, and real LendingClub 2007–2018 data.  
+This is an end-to-end credit risk scoring and lending portfolio analytics system built using Python, Streamlit, SQL, and real LendingClub 2007–2018 data.  
 It simulates how digital lenders evaluate borrowers, manage portfolio risk, and make data-driven underwriting decisions.
 
 ---
