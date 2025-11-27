@@ -1,83 +1,62 @@
 # CrediSight – AI-Driven Loan Underwriting & Portfolio Risk Management System
 
-An end-to-end credit risk scoring, underwriting decision engine, and lending portfolio analytics dashboard built using Python, Streamlit, SQL, and real-world LendingClub 2007–2018 data.
-
-This project simulates how digital lending companies design credit policies, evaluate borrowers, monitor portfolio risk, and automate underwriting workflows — fully aligned with Portfolio Management, Credit Strategy, and Risk Analytics responsibilities described in the role of *Senior Analyst – Risk & Portfolio Mgmt*.  
+CrediSight is an end-to-end credit risk scoring and lending portfolio analytics system built using Python, Streamlit, SQL, and real LendingClub 2007–2018 data.  
+It simulates how digital lenders evaluate borrowers, manage portfolio risk, and make data-driven underwriting decisions.
 
 ---
 
 ## 🚀 Features
 
-### 🔹 1. **Machine Learning–Based Underwriting Engine**
-- Processes borrower application data (loan amount, income, FICO, DTI, purpose, credit lines, inquiries, etc.)
-- Predicts **Probability of Default (PD)** using a trained ML model (Logistic Regression / XGBoost)
-- Generates **Approve / Reject** decision
-- Provides **risk score**, **PD bands**, and **recommended safe loan amount**
-- Uses LendingClub’s accepted loans (2007–2018) as training data
+### **1. Machine Learning–Based Underwriting Engine**
+- Predicts **Probability of Default (PD)** using borrower attributes (income, DTI, FICO, credit lines, inquiries, loan amount, etc.)
+- Generates **Approve/Reject** decisions
+- Recommends a **safe loan amount** based on risk  
+- Trained using LendingClub accepted loans dataset
 
-### 🔹 2. **Interactive Loan Application Simulation**
-- Streamlit UI with:
-  - Input fields (income, DTI, FICO, loan amount, tenure, home ownership, etc.)
-  - Sliders to vary loan amount and instantly observe PD changes
-  - Fix PD threshold and compute the **max loan user can safely be offered**
-  - Drop-file option to upload multiple applications and score them in bulk
-- After decision, applications are stored in:
-  - **accepted_loans** table  
-  - **rejected_loans** table  
+### **2. Interactive Loan Application Scoring**
+- Streamlit UI form for entering applicant details  
+- Sliders to vary loan amount and instantly observe PD changes  
+- File upload to score multiple applications in bulk  
+- Decisions stored into:
+  - `accepted_loans`
+  - `rejected_loans`
 
-### 🔹 3. **Portfolio Monitoring MIS**
-Tracks portfolio KPIs commonly used in digital lending:
-- Total disbursed  
-- Active vs closed vs defaulted loans  
-- **NPA% / PAR30 / PAR60 / PAR90**  
-- **Vintage curves**  
-- Risk distribution across grades, income brackets, and geographies  
-- Early-warning indicators (delinquency, inquiries, utilization spikes)  
-- Filters by purpose, grade, state, loan issue date, and more  
-- All dashboards update dynamically based on database data
+### **3. Portfolio Monitoring Dashboard (MIS)**
+- Total disbursements, active loans, closed loans, defaults  
+- **NPA%, PAR30/60/90, default trends**  
+- Distribution by purpose, grade, income, geography  
+- Early-warning indicators (delinquency, utilization spikes)  
+- Dynamic filters and time-based analysis
 
-### 🔹 4. **SQL-Backed Lending Database**
-Built using PostgreSQL / SQL Server to practice real analytic workflows:
-- `applications`  
-- `accepted_loans`  
-- `rejected_loans`  
-- `model_versions` (future upgrade)  
+### **4. SQL-Backed Lending Database**
+- PostgreSQL / SQL Server used for:
+  - Application storage  
+  - Approved/rejected loan records  
+  - Portfolio MIS calculations  
+- All actions execute SQL queries directly
 
-All actions (approve, reject, score applicants) write directly via SQL.
-
-### 🔹 5. **Model Retraining Workflow (Batch Mode)**
-Currently manual (industry-standard):
-1. Pull latest DB data  
-2. Retrain ML model  
-3. Evaluate performance: AUC, KS, Bad Rate, PSI  
-4. Save updated `model.pkl`  
-5. Dashboard uses the new model automatically  
-
-A future upgrade adds:
-- Streamlit **"Retrain Model"** button  
-- Automated batch retrain scripts  
-- Model versioning  
+### **5. Batch Model Retraining (Manual)**
+- Fetch latest loan data from DB  
+- Retrain ML model  
+- Evaluate updated metrics (AUC, KS, Bad Rate)  
+- Save new `model.pkl` for dashboard inference  
+- (Future) Add automated retrain & model versioning
 
 ---
 
-## 🧠 Why This Project Matches Digital Lending Roles
-
-This project directly demonstrates skills required for **Risk & Portfolio Mgmt**:  
-✔ Credit strategy development  
-✔ Building lending decision models  
-✔ Portfolio performance monitoring  
-✔ Data cleaning & feature engineering  
-✔ SQL automation  
-✔ Test-and-learn simulation  
-✔ Business-driven analytics  
-✔ Python, ML, dashboards  
-✔ End-to-end process orientation  
-
-(Aligned with the JD: Portfolio Strategy, MIS, Automation, SQL/Python) :contentReference[oaicite:1]{index=1}
+## 🧠 Why This Project Fits Risk & Portfolio Mgmt Roles
+Demonstrates skills required in lending analytics:
+- Credit decision model building  
+- Portfolio performance monitoring  
+- SQL and Python automation  
+- Feature engineering  
+- Lending KPIs (NPA, PAR, vintages)  
+- Test-and-learn risk simulations  
+- End-to-end underwriting workflow
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Structure
 
 CrediSight/
 │
@@ -96,122 +75,82 @@ CrediSight/
 ├── streamlit_app/
 │ ├── app.py
 │ ├── pages/
-│ │ ├── 1_Underwriting.py
-│ │ ├── 2_Portfolio_MIS.py
-│ │ ├── 3_Risk_Simulation.py
+│ ├── 1_Underwriting.py
+│ ├── 2_Portfolio_MIS.py
+│ ├── 3_Risk_Simulation.py
 │
-├── utils/
-│ ├── preprocessing.py
-│ ├── feature_engineering.py
-│ ├── scoring.py
-│
-└── README.md
+└── utils/
+├── preprocessing.py
+├── feature_engineering.py
+├── scoring.py
 
 
 ---
 
-## 🧮 Machine Learning Approach
+## 🧮 Machine Learning Overview
 
-### **Model Type**
-- Logistic Regression (baseline)
+### **Models**
+- Logistic Regression (baseline)  
 - XGBoost (final model)
 
-### **Feature Engineering Includes**
-- DTI ratio normalization  
-- FICO range compression  
-- Utilization metrics  
-- Credit line age features  
-- Inquiry & delinquency features  
-- Past derogatory markers  
+### **Feature Engineering**
+- DTI normalization  
+- Credit utilization metrics  
+- FICO range features  
+- Age of credit lines  
+- Inquiry & delinquency indicators  
 - Installment-to-income ratio  
-- Loan amount scaling  
 - Purpose encoding  
-- Employment length bucketization  
+- Employment length buckets  
 
-### **Evaluation Metrics**
+### **Evaluation**
 - AUC  
-- KS Statistic (industry standard)  
-- Bad Rate Separation  
+- KS Statistic  
+- Bad Rate separation  
 - Confusion matrix  
 - Calibration curve  
 
 ---
 
-## 📊 Streamlit Dashboard Pages
+## 📊 Streamlit Dashboard Modules
 
-### **📌 1. Underwriting Engine**
-Enter applicant info → model returns:
-- Probability of default  
-- Approval decision  
+### **1. Underwriting Engine**
+- Applicant input  
+- PD prediction  
+- Decision (Approve/Reject)  
 - Recommended loan amount  
-- Database insert option  
+- Store into DB  
 
-### **📌 2. Portfolio MIS**
+### **2. Portfolio MIS**
 - KPIs  
 - Trend charts  
-- Risk flags  
 - Vintage curves  
-- Purpose/state distributions  
-- Active vs closed vs default status  
+- Purpose/state analysis  
+- Risk flag monitoring  
 
-### **📌 3. Risk Simulation**
-- Vary loan amount  
-- Vary income or DTI  
-- Observe PD effect  
-- Risk appetite scenario tests  
+### **3. Risk Simulation**
+- Loan amount vs PD  
+- DTI / income sensitivity  
+- Risk appetite scenarios  
 
 ---
 
-## 🗄️ Database Design (SQL)
+## 🛠️ Tech Stack
+- **Python** (pandas, numpy, scikit-learn, xgboost)  
+- **Streamlit** (UI & dashboard)  
+- **SQL Server / PostgreSQL**  
+- **Matplotlib / Plotly**  
+- **Joblib** (model storage)
 
-```sql
-CREATE TABLE accepted_loans (...);
-CREATE TABLE rejected_loans (...);
-CREATE TABLE applications (...);
-CREATE TABLE model_versions (...);
-Supports SQL queries for MIS and model retraining.
-```
-🛠️ Tech Stack
+---
 
-Python (pandas, numpy, scikit-learn, xgboost)
+## 🚧 Future Enhancements
+- Automated model retraining pipeline  
+- Model versioning  
+- Real-time scoring API (FastAPI)  
+- Collections & recovery analytics  
 
-Streamlit (dashboard + UI)
+---
 
-SQL Server / PostgreSQL
-
-Matplotlib / Plotly (visual analytics)
-
-Joblib (model persistence)
-
-🚧 Future Enhancements
-
-Automated batch retrain pipeline
-
-Model versioning (MLflow-like approach)
-
-Real-time scoring API (FastAPI)
-
-Early-warning alerts via WhatsApp/Email
-
-Collections risk dashboard
-
-📬 Contact
-
+## 📬 Contact
 For questions or collaboration, feel free to reach out!
-
-
----
-
-# ⭐ **If you want, I can also create:**
-
-### ✔ Resume project entry (final polished)  
-### ✔ GitHub sidebar sections  
-### ✔ Diagram for architecture  
-### ✔ SQL schema file  
-### ✔ Folder boilerplate code  
-### ✔ Streamlit page template  
-### ✔ Train model pipeline template  
-
-Just tell me and I’ll generate everything.
-
-
