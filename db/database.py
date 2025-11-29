@@ -70,6 +70,18 @@ class Database:
         df = pd.read_sql(query, self.conn)
         self._schedule_close()
         return df
+    
+    
+    def get_columns(self, table_name):
+        self._ensure_connection()
+        cursor = self.conn.cursor()
+        cursor.execute(f"""
+            SELECT COLUMN_NAME
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_NAME = '{table_name}'
+            ORDER BY ORDINAL_POSITION
+        """)
+        return [row[0] for row in cursor.fetchall()]
 
 
     def execute(self, sql, params=None):
